@@ -1,0 +1,9 @@
+pt-BR:
+  admin/highlight:
+    model: 'Destaques'
+    actions:
+      index: 'Configurações'
+      
+  activerecord:
+    attributtes:
+      
