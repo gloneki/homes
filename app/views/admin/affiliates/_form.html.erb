@@ -1,0 +1,20 @@
+<%=simple_form_for ([:admin, @affiliate]) do |f| %>
+	<h5>Dados Gerais</h5><br/>
+	<%=f.input :name, :input_html =>{:required => true, :class => 'span6'}%>
+	<div class="sideBySide">
+		<%=f.input :file, :input_html =>{:required => true}%>
+		<%=f.input :date_affiliate, :as => :string, :input_html =>{:required => true, :class => "datepicker"}%>
+	</div>
+	<%=f.input :description, :as => :text, :input_html => { :class => "span6", :rows => 5 }%>
+	
+  <div class="form-actions">
+	   
+	<%= link_to 'Voltar', admin_affiliates_path, :class => 'btn' %>
+    <%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+  </div>
+<% end %>
+<script>
+	jQuery(document).ready(function(){
+		
+	});
+</script>

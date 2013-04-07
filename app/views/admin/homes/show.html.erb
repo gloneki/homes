@@ -1,0 +1,162 @@
+<div>
+	<div class="collapseGroup">
+	    <div class="details">
+	        <summary data-target="#dadosGerais" data-toggle="collapse" class="collapsed"><span>01.</span> Dados Gerais</summary>
+	        <div class="collapse" id="dadosGerais">
+	            <p>
+	            	<table class="tableList">
+	            		<thead>
+	            			<tr>
+	            				<th>Propriedade</th>
+	            				<th>Valor</th>
+	            			</tr>
+	            		</thead>
+	            		<tbody>	
+	            			<tr>
+		            			<td width="200px">Code</td>
+	  							<td width="300px"><%= @home.code %></td>
+  							</tr>
+  							<tr>
+		            			<td width="200px">Tipo de Imóvel</td>
+	  							<td><%= @home.type_home.name %></td>
+  							</tr>
+  							<tr>
+		            			<td width="200px">Tipo de Serviço</td>
+	  							<td><%= @home.type_service.name %></td>
+  							</tr>
+  							
+	  						<tr>
+	            				<td width="200px">Preço</td>
+  								<td><%= @home.price %></td>
+		  				
+							</tr>
+							<%unless @home.description.blank? %>
+							<tr>
+		            			<td width="200px">Descrição</td>
+	  							<td><%= @home.description %></td>
+  							</tr>	
+		  					<%end%>
+  						</tbody>				
+	            	</table>
+	            </p>
+	            
+	        </div>
+	    </div>
+	
+	    <div class="details">
+	        <summary data-target="#dadosEndereco" data-toggle="collapse"><span>02.</span> Dados Endereço</summary>
+	        <div class="collapse" id="dadosEndereco">
+	            <p>
+	            	<table class="tableList">
+	            		<thead>
+	            			<tr>
+	            				<th>Propriedade</th>
+	            				<th>Valor</th>
+	            			</tr>
+	            		</thead>
+	            		<tbody>
+	            			<tr>
+	            				<td width="200px">País</td>
+	            				<td width="300px"><%= @home.address.country %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">Estado</td>
+	            				<td width="300px"><%= @home.address.state %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">CEP</td>
+	            				<td width="300px"><%= @home.address.postal_code %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">Cidade</td>
+	            				<td width="300px"><%= @home.address.city %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">Bairro</td>
+	            				<td width="300px"><%= @home.address.neighborhood %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">Rua</td>
+	            				<td width="300px"><%= @home.address.street %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">Número</td>
+	            				<td width="300px"><%= @home.address.number %></td>
+	            			</tr>
+	            			<%unless @home.address.complement.blank?%>
+		            			<tr>
+		            				<td width="200px">Complemento</td>
+		            				<td width="300px"><%= @home.address.complement %></td>
+		            			</tr>
+	            			<%end%>
+	            		</tbody>
+	            	</table>
+	            	
+	            </p>
+	            
+	        </div>
+	    </div>
+	    
+	    <div class="details">
+	        <summary data-target="#dadosOwner" data-toggle="collapse"><span>03.</span> Dados Proprietário</summary>
+	        <div class="collapse" id="dadosOwner">
+	            <p>
+	            	<table class="tableList">
+	            		<thead>
+	            			<tr>
+	            				<th>Propriedade</th>
+	            				<th>Valor</th>
+	            			</tr>
+	            		</thead>
+	            		<tbody>
+	            			<tr>
+	            				<td width="200px">Nome</td>
+	            				<td width="300px"><%= @home.owner.name %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">Email</td>
+	            				<td width="300px"><%= @home.owner.email %></td>
+	            			</tr>
+	            			<tr>
+	            				<td width="200px">CPF</td>
+	            				<td width="300px"><%= @home.owner.document %></td>
+	            			</tr>
+	            			<%unless @home.owner.owner_contacts.empty?%>
+		            			<%@home.owner.owner_contacts.each do |contact|%>
+		            			<tr>
+		            				<td width="200px">Tipo de Contato</td>
+		            				<%if contact.contact_value=='W'%>
+		  								<td>Comercial</td>
+		  							<%elsif contact.contact_value=='M'%>
+		  								<td>Celular</td>
+			  						<%else%>
+			  							<td>Residencial</td>
+			  						<%end%>
+		            			</tr>
+		            			<tr>
+		            				<td width="200px">Contato</td>
+		            				<td width="300px"><%= contact.contact_value %></td>
+		            			</tr>
+		            			
+		            			<%end%>
+	            			<%end%>
+	            		</tbody>
+	            	</table>
+	            	
+	            </p>
+	            
+	        </div>
+	    </div>
+	</div>
+</div>
+
+<div class="form-actions">
+	<%= link_to 'Voltar', admin_homes_path, :class => 'btn' %>
+	<%= link_to 'Editar', edit_admin_home_path(@home), :class=>"btn btn-primary btn-large " %>	   
+</div>
+
+<script>
+	jQuery(document).ready(function(){
+		jQuery('div').removeClass('active')
+	});
+</script>

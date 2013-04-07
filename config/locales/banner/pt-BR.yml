@@ -1,0 +1,9 @@
+pt-BR:
+  banner:
+    model: 'Banner'
+    actions:
+      index: 'Configurações'
+      
+  activerecord:
+    attributtes:
+      

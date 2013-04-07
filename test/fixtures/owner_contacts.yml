@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type_contact: MyString
+  contact_value: MyString
+  owner: 
+
+two:
+  type_contact: MyString
+  contact_value: MyString
+  owner: 

@@ -1,0 +1,79 @@
+<%= simple_form_for([:admin, @home]) do |f| %>
+	<ul class="tabs">
+	    <li class="active"><a href="#tab1" >Dados Imóvel</a></li>
+	    <li><a href="#tab2" >Imóvel Endereço</a></li>
+	    <li><a href="#tab3" >Imóvel Proprietário</a></li>
+	</ul>
+  	<div class="tab-content">
+	    <div class="tab-pane active" id="tab1">
+	    	<%=render :partial => 'general_homes', :locals =>{:f => f}%>
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	     <%= f.fields_for :address do |builder|%>
+		  	<%=render :partial => 'address', :locals => {:f => builder}%>
+		  <%end%>
+	    </div>
+	    <div class="tab-pane" id="tab3">
+		    <%if @owners.empty?%>
+		    	<div class="alert alert-warning">Por favor cadastre um proprietário</div>
+		    <%end%>
+		    <div class="sideBySide">
+		    	<%unless @owners.empty?%>
+					<%=f.input :owner_id, collection: @owners, prompt: "Escolha o proprietário", :input_html =>{:class => "customSelect span4", :tabindex=>"1", :required => true}%>
+					
+				<%end%>
+				<label>Novo Propietário</label>
+				<%=link_to 'Novo', {:controller => 'owners', :action => 'new'}, :class =>'btn btn-primary ico-user-add', :target=>'_blank' %>
+			</div>
+			<div id="response_owner">
+				<%unless f.object.owner_id.nil?%>
+					<%=render :partial => "owner_show", :locals =>{:owner =>@home.owner}%>
+				<%end%>
+			</div>
+			<div class="form-actions">
+			   <button type="button" class="btn prox" prev="tab2">Voltar</button>
+			   <%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+			</div>	    
+	    </div>
+	</div>
+<% end %>
+<script>
+	jQuery(document).ready(function(){
+		jQuery('.prox').click(function(){
+			var retorno = true
+			if(jQuery(this).attr('next')!=undefined){
+				
+				jQuery('#'+jQuery(this).attr('current')+' [required]').each(function(){
+					if (jQuery(this).val()==''){
+						console.log(jQuery(this));
+						retorno = false;
+						jQuery(this).parent('div').addClass('error')
+						jQuery(this).focus();
+					}	
+				});
+				if(retorno){
+					jQuery(this).removeClass('error')
+					jQuery('.tabs li').removeClass('active');
+					jQuery('.tab-pane').removeClass('active');
+					jQuery('a[href=#'+jQuery(this).attr('next')+']').parent('li').addClass('active');
+					jQuery('#'+jQuery(this).attr('next')).addClass('active');
+				}
+			}else{
+				jQuery('.tabs li').removeClass('active');
+				jQuery('.tab-pane').removeClass('active');
+				jQuery('a[href=#'+jQuery(this).attr('prev')+']').parent('li').addClass('active');
+				jQuery('#'+jQuery(this).attr('prev')).addClass('active');
+			}
+			
+		});
+		jQuery('#home_owner_id').change(function(){
+			jQuery.ajax({
+				type: "GET",
+				url: "/admin/homes/get_owner",
+				data: { id: jQuery(this).val() }
+			});
+		});
+		jQuery("#home_address_attributes_postal_code").mask("99999-999");
+		//jQuery("#home_price").priceFormat();
+	});
+</script>

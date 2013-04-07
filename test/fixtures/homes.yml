@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  code: MyString
+  account: 
+  address: 
+  type_home: 
+  type_service: 
+  owner: 
+  description: MyString
+  price: 1.5
+
+two:
+  code: MyString
+  account: 
+  address: 
+  type_home: 
+  type_service: 
+  owner: 
+  description: MyString
+  price: 1.5

@@ -1,0 +1,37 @@
+<h3 style="padding:0px">Listagem Proprietários</h3><br />
+
+<table class="tableList">
+  <thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Document</th>
+	    <th>Email</th>
+	    <th>Status</th>
+	    <th>Estado</th>
+	    <th>Cidade</th>
+	    <th>Ações</th>
+	    
+	  </tr>
+  </thead>
+  <tbody>
+<% @owners.each do |owner| %>
+  <tr>
+    <td><%= owner.name %></td>
+    <td><%= owner.document %></td>
+    <td><%= owner.email %></td>
+    <td><%= owner.status %></td>
+    <td><%= owner.owner_address.state %></td>
+    <td><%= owner.owner_address.city %></td>
+    <td>
+    	<%= link_to '', {:controller => 'owners', :action => 'show', :id => owner.id}, :class => 'ico-info-circle' %>
+    	<%= link_to '', edit_admin_owner_path(owner), :class => 'ico-edit' %>
+    	
+    </td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br />
+
+<%= link_to 'Novo Proprietário', new_admin_owner_path %>

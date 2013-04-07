@@ -1,0 +1,61 @@
+<%= simple_form_for([:admin, @setting_shop]) do |f| %>
+  <%= f.error_notification %>
+	<ul class="tabs">
+	    <li class="active"><a href="#tab1" >Dados Gerais</a></li>
+	    <li><a href="#tab2" >Dados Endereço</a></li>
+	    <li><a href="#tab3" >Dados Contato</a></li>
+	</ul>
+  	<div class="tab-content">
+	    <div class="tab-pane active" id="tab1">
+	    	<%=render :partial => 'general_data', :locals =>{:f => f}%>
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	      	<%=render :partial => 'address_data', :locals => {:f => f}%>
+		</div>
+		<div class="tab-pane" id="tab3">
+			
+	      	<%= f.input :email, :input_html =>{:class =>'span6'} %>
+	      	<%=f.fields_for :setting_shop_contacts do |builder|%>
+		  		<%=render :partial => 'setting_shop_contact_fields', :locals => {:f => builder}%>
+		  	<%end%>
+		  	<%= link_to_add_fields "", f, :setting_shop_contacts %>
+		  	<div class="form-actions">
+				<button type="button" class="btn prox" prev="tab2">Voltar</button>
+			    <%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+			</div>
+
+		</div>
+	</div>
+<% end %>
+<script>
+	jQuery(document).ready(function(){
+		jQuery('.prox').click(function(){
+			var retorno = true
+			if(jQuery(this).attr('next')!=undefined){
+				
+				jQuery('#'+jQuery(this).attr('current')+' [required]').each(function(){
+					if (jQuery(this).val()==''){
+						console.log(jQuery(this));
+						retorno = false;
+						jQuery(this).parent('div').addClass('error')
+						jQuery(this).focus();
+					}	
+				});
+				if(retorno){
+					jQuery(this).removeClass('error')
+					jQuery('.tabs li').removeClass('active');
+					jQuery('.tab-pane').removeClass('active');
+					jQuery('a[href=#'+jQuery(this).attr('next')+']').parent('li').addClass('active');
+					jQuery('#'+jQuery(this).attr('next')).addClass('active');
+				}
+			}else{
+				jQuery('.tabs li').removeClass('active');
+				jQuery('.tab-pane').removeClass('active');
+				jQuery('a[href=#'+jQuery(this).attr('prev')+']').parent('li').addClass('active');
+				jQuery('#'+jQuery(this).attr('prev')).addClass('active');
+			}
+			
+		});
+		
+	});
+</script>

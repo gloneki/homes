@@ -1,0 +1,24 @@
+<!doctype html>
+<html class="colorNavyBlue">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Myapp" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <link rel="stylesheet" type="text/css" href="//locastyle.locaweb.com.br/assets/application-f45d0a9ff1dc261903308c854c4f7246.css">
+<script type="text/javascript" src="//locastyle.locaweb.com.br/assets/application-5ab612279787b011b14448bdf51b0d1c.js"></script>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body style="background-color: #F5F5F5; padding-bottom: 40px; padding-top: 40px;">
+	<div class="container">
+		<%= yield%>
+	</div>  	
+  </body>
+</html>
+
+
+      

@@ -1,0 +1,9 @@
+<%=simple_form_for @user do |f| %>
+	<%=f.input :email, :input_html =>{:required => true, :class => 'span6'}%>
+	<%=f.input :password, :as => :password, :input_html =>{:required => true, :class => 'span6'}%>
+	<%=f.input :password_confirmation, :as => :password, :input_html =>{:required => true, :class => 'span6'}%>
+	<div class="form-actions">
+	   <%= link_to 'Voltar', users_path, :class => 'btn' %>
+    	<%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+  </div>
+<%end%>

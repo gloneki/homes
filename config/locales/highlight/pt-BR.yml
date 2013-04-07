@@ -1,0 +1,9 @@
+pt-BR:
+  highlight:
+    model: 'Destaques'
+    actions:
+      index: 'Configurações'
+      
+  activerecord:
+    attributtes:
+      

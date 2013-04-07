@@ -1,0 +1,12 @@
+<%= simple_form_for ([:admin, @highlight]) do |f| %>
+	<h5>Configurações Destaques</h5><br/>
+	<%=f.input :name, :input_html =>{:required => true, :class => 'span6'}%>
+	<%=f.fields_for :highlight_files do |builder|%>
+  		<%=render :partial => 'highlight_file_fields', :locals => {:f => builder}%>
+  	<%end%>
+	<%= link_to_add_fields "", f, :highlight_files %>
+	<div class="form-actions">
+		<%=link_to 'Voltar', admin_module_extensions_path, :class => "btn"%>
+		<%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+	</div>
+<% end %>

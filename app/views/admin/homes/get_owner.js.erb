@@ -1,0 +1,3 @@
+<%unless @owner.nil?%>
+	jQuery('#response_owner').html('<%=escape_javascript(render :partial =>"owner_show", :locals => {:owner => @owner})%>')
+<%end%>

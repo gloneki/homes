@@ -1,0 +1,2 @@
+module SettingShopsHelper
+end

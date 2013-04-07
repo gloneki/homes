@@ -1,0 +1,12 @@
+<%= simple_form_for ([:admin, @banner]) do |f| %>
+	<h5>Configurações Banner</h5><br/>
+	<%=f.input :name, :input_html =>{:required => true, :class => 'span6'}%>
+	<%=f.fields_for :banner_files do |builder|%>
+  		<%=render :partial => 'banner_file_fields', :locals => {:f => builder}%>
+  	<%end%>
+	<%= link_to_add_fields "", f, :banner_files %>
+	<div class="form-actions">
+		<%=link_to 'Voltar', admin_module_extensions_path, :class => "btn"%>
+	    <%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+	</div>
+<% end %>

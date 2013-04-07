@@ -1,0 +1,9 @@
+<ul class="listOptions">
+    <li>
+        <p>Nome: <strong><%=owner.name%></strong> | CPF: <strong><%=owner.document%></strong></p>
+        <span class="actLnk fright">
+        	<%=link_to 'Ver Detahes', {:controller => 'owners', :action => 'show', :id =>owner.id}, :class =>'lnkSeta', :target =>'_blank' %>
+        </span>
+        <p class="pObs"><strong>E-mail:</strong> <%=owner.email%></p>
+    </li>
+</ul>

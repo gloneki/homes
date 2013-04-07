@@ -1,0 +1,23 @@
+<%= simple_form_for @setting do |f| %>
+	<table>
+		<tr>
+			<td width="150px"><strong>Configuração</strong></td>
+			<td><%=f.input :description, :label => false, :input_html => {:disabled =>true}%></td>
+		</tr>
+		<tr>
+			<td><strong>Valor</strong></td>
+		<%if @setting.setting_type == 'string'%>
+			<td><%=f.input :setting_value, :label => false%></td>
+		<%elsif @setting.setting_type == 'radio'%>
+		
+		<%end%>
+		</tr>		
+	</table>
+	
+
+<div class="form-actions">
+	<%= link_to 'Voltar', settings_path, :class => 'btn' %>
+    <%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+</div>
+	
+<% end %>

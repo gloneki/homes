@@ -1,0 +1,29 @@
+<%=simple_form_for ([:admin, @owner]) do |f| %>
+	<h5>Dados Gerais</h5><br/>
+	<%=f.input :name, :input_html =>{:required => true, :class => 'span6'}%>
+	<div class="sideBySide">
+		<%=f.input :email, :input_html =>{:required => true, :email =>true}%>
+		<%=f.input :document, :input_html =>{:required => true}%>
+	</div>
+	<%=f.fields_for :owner_contacts do |builder|%>
+  		<%=render :partial => 'contacts', :locals => {:f => builder}%>
+  	<%end%>
+	<hr />
+	<h5>Dados Endereço</h5><br />
+	<%=f.fields_for :owner_address do |builder|%>
+  		<%=render :partial => 'address', :locals => {:f => builder}%>
+  	<%end%>
+    
+  <div class="form-actions">
+	   
+	<%= link_to 'Voltar', admin_owners_path, :class => 'btn' %>
+    <%= f.submit 'Salvar', :class=>"btn btn-primary btn-large " %>
+  </div>
+<% end %>
+<script>
+	jQuery(document).ready(function(){
+		jQuery('#owner_document').mask('999.999.999-99');
+		jQuery('#owner_owner_address_attributes_postal_code').mask('99999-999');
+		jQuery('#owner_owner_contacts_attributes_0_contact_value').mask('(99) 9999-9999');
+	});
+</script>

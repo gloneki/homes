@@ -1,0 +1,48 @@
+<div>
+	<div class="collapseGroup">
+	    <div class="details">
+	        <summary data-target="#dadosGerais" data-toggle="collapse" class="collapsed"><span>01.</span> Dados Gerais</summary>
+	        <div class="collapse" id="dadosGerais">
+	            <p>
+	            	<table class="tableList">
+	            		<thead>
+	            			<tr>
+	            				<th>Propriedade</th>
+	            				<th>Valor</th>
+	            			</tr>
+	            		</thead>
+	            		<tbody>	
+	            			<tr>
+		            			<td width="200px">Name</td>
+	  							<td width="300px"><%= @affiliate.name %></td>
+  							</tr>
+  							<tr>
+		            			<td width="200px">Data</td>
+	  							<td><%= @affiliate.date_affiliate %></td>
+  							</tr>
+  							<tr>
+		            			<td width="200px">Descrição</td>
+	  							<td><%= @affiliate.description %></td>
+  							</tr>
+  							<tr>
+		            			<td width="200px">Arquivo</td>
+	  							<td><%= @affiliate.file %></td>
+  							</tr>
+  						</tbody>				
+	            	</table>
+	            </p>
+	            
+	        </div>
+	    </div>
+	</div>
+</div>
+<div class="form-actions">
+	<%= link_to 'Voltar', admin_affiliates_path, :class => 'btn' %>
+	<%= link_to 'Editar', edit_admin_affiliate_path(@affiliate), :class=>"btn btn-primary btn-large " %>	   
+</div>
+
+<script>
+	jQuery(document).ready(function(){
+		jQuery('div').removeClass('active')
+	});
+</script>

@@ -1,0 +1,13 @@
+<div class="sideBySide">
+	<%=f.input :type_home_id, collection: @type_homes, prompt: "Tipo de Imóvel", :input_html=>{:required => true}%>
+	<%=f.input :type_service_id, collection: @type_services, prompt: "Tipo de Serviço", :input_html=>{:required => true}%>
+</div>
+<div class="sideBySide">
+	<%=f.input :code, :input_html=>{:required => true}%>
+	<%=f.input :price, :input_html=>{:required => true}%>
+</div>
+<%=f.input :description, :as => :text, :input_html => { :class => "span6", :rows => 5 }%>
+<div class="form-actions">
+   <%= link_to 'Voltar', admin_homes_path, :class =>'btn' %>
+   <button type="button" class="btn btn-primary ico-right-open-2 icoPosRight btn-large prox" next="tab2" current="tab1">Avançar</button>
+</div>

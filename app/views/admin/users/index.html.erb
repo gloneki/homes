@@ -1,0 +1,34 @@
+<h3 style="padding:0px">Listagem Proprietários</h3><br />
+
+<table class="tableList">
+  <thead>
+	  <tr>
+	    <th>Email</th>
+	    <th>Status</th>
+	    <th>Ações</th>
+	    
+	  </tr>
+  </thead>
+  <tbody>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= user.is_active ? 'ATIVO' : 'INATIVO' %></td>
+    <td>
+    	<%= link_to '', edit_admin_user_path(user), :class => 'ico-edit' %>
+    	<%if user.is_active%>
+    		<a href="#inactive_<%=user.id%>" role="button" class="ico-blocked" data-toggle="modal"></a>
+    		<%=render :partial => '/layouts/message_inactive', :locals =>{:controller => 'users', :action_name => 'inactive', :id_value => user.id}%>
+    	<%else%>
+    		<a href="#active_<%=user.id%>" role="button" class="ico-check-1" data-toggle="modal"></a>
+    		<%=render :partial => '/layouts/message_active', :locals =>{:controller => 'users', :action_name => 'active', :id_value => user.id}%>
+    	<%end%>
+    </td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br />
+
+<%= link_to 'Novo Usuário', new_admin_user_path %>

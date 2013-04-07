@@ -1,0 +1,14 @@
+<ul class="listOptions listagemMeiosPagtos">
+<%@settings.each do |setting|%>
+	<%active = setting.status ? "pagtoAtivo" : ""%>
+    <li class="<%=active%>">
+        <h6><%=setting.description%></h6>
+        <span class="actLnk fright">
+            <%=link_to 'Editar', edit_setting_path(setting), :class =>"lnkSeta" %>
+            <a class="lnkSeta" href="#">Desativar</a>
+        </span>
+        <p class="pObs"><strong>Valor:</strong> <%=setting.setting_value%></p>
+    </li>
+      
+<%end%>
+</ul>

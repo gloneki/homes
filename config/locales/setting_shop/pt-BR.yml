@@ -1,0 +1,9 @@
+pt-BR:
+  setting_shop:
+    model: 'Configurações Loja'
+    actions:
+      index: 'Listagem'
+      
+  activerecord:
+    attributtes:
+      

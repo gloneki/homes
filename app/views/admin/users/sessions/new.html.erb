@@ -1,0 +1,15 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html =>{:class => "form-signin"}) do |f| %>
+  <% if flash[:alert] %>
+	<label style="color:red"><%=flash[:alert]%></label><br />
+  <%end%>
+  <h2 class="form-signin-heading">Login Usuário</h2>
+  <%= f.email_field :email, :autofocus => true, :placeholder =>"Email", :class => "input-block-level", :type => "text" %>
+  <%= f.password_field :password, :placeholder =>"Senha", :class => "input-block-level" %>
+
+  <% if devise_mapping.rememberable? -%>
+  	<label class="checkbox">
+    	<%= f.check_box :remember_me %>Lembrar-me
+  	</label>
+  <% end -%>
+  <%= f.submit "Login", :class =>"btn btn-large btn-primary" %>
+<% end %>

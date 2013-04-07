@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  setting_value: MyString
+  account_id: 
+  setting_type: MyString
+  ref_id: 1
+
+two:
+  name: MyString
+  description: MyString
+  setting_value: MyString
+  account_id: 
+  setting_type: MyString
+  ref_id: 1

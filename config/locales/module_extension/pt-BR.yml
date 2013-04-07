@@ -1,0 +1,8 @@
+pt-BR:
+  module_extension:
+    model: 'Módulos'
+    actions:
+      index: 'Listagem'
+  activerecord:
+    attributtes:
+      

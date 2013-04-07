@@ -1,0 +1,7 @@
+<div class="sideBySide">
+	<%=f.input :file, :input_html=>{:required => true}%>
+	<%=f.input :description, :input_html => { :required => true }%>
+	<span class="remove" style="">
+		<%= link_to_remove_fields "", f, 'Arquivo'%>
+	</span>
+</div>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="colorNavyBlue">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Myapp" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <link rel="stylesheet" type="text/css" href="//locastyle.locaweb.com.br/assets/application-f45d0a9ff1dc261903308c854c4f7246.css">
+<script type="text/javascript" src="//locastyle.locaweb.com.br/assets/application-5ab612279787b011b14448bdf51b0d1c.js"></script>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+  	<div id="toolbar">
+	    <div class="limiteToolbar">
+	      <h1 class="logoToolbar">Central do Cliente</h1>
+		  <a href="/admin/sign_out" class="logOut">Sair</a>
+	      <%unless current_user.nil?%>
+	      	<span class="userName"><strong><%=current_user.email%></strong></span>
+	      <%end%>
+	    </div>
+  	</div>
+  	<header class="headerPrincipal">
+	    <div class="limite">
+      		<a id="feedbackr" class="lnkSugestoes" href="https://www.feedbackr.com.br/projects/4eef88bd6866c42b5500000e/feedbacks/new" target="_blank" alt="feedbackr">Sugestões</a>
+      		<h1 class="serviceName"><a href="/">Homes</a></h1>
+        </div>
+	    <menu id="menuPrincipal">
+	      <ul>
+	        <li class="selected"><a href="/" class="ico-home">Página inicial</a></li>
+	        <li><a href="/admin/homes">Imóveis</a>
+	        <li><a href="/admin/owners">Proprietários</a></li>
+	        <li class="parent"><a href="#">Configurações</a>
+	          <ul>
+	            <li><a href="/admin/setting_shops">Configurações Loja</a></li>
+	            <li><a href="/admin/settings">Configurações Sistema</a></li>
+	            
+	          </ul>
+	        </li>
+	        <li><a href="/admin/module_extensions">Módulos</a></li>
+	      	<li><a href="/admin/users">Usuários</a></li>
+	      </ul>
+	    </menu>
+  	</header>
+  	<div id="main">
+	  	<div class="limite">
+		  	<div class="row">
+		        
+		        <%= render 'layouts/breadcumb' %>
+		    	
+		        <div class="span12">
+		        	<%= render 'layouts/messages' %>
+		        	<%= yield %>
+		  		</div>
+		  		<%unless current_user.nil?%>
+		  		<div class="span4">
+		  		
+		            <aside class="sidebar">
+		              <section class="sideBox">
+		                <h1 class="titSide titDadosConta">Dados da Conta</h1>
+		                <div class="innerSideBox boxWhite">
+		                  <h6>Identificador</h6>
+		                  <p><strong><%=current_user.email%></strong></p>
+		
+		                  <hr>
+		
+		                  <h6>Nome</h6>
+		                  <p><strong><%=session[:shop_name]%></strong></p>
+		                  <%=link_to 'Editar Nome', admin_setting_shops_path, :class => 'edit-account-name lnkSeta'%>
+		                  <hr>
+		
+		                  <h6>Plano</h6>
+		                  <p><strong><%=session[:plan_name]%></strong></p>
+		
+		                  
+		                </div>
+		              </section>
+		          </aside>
+      			</div>
+      			<%end%>
+		  	
+		  	</div>
+		</div>
+  	
+  		<footer id="rodape">
+		      <div class="footerTop">
+		        <div class="limite">
+		          <nav>
+		            <h6>Atendimento</h6>
+		            <ul>
+		              <li class="ico-helpDesk"><a href="#">HelpDesk</a></li>
+		              <li class="ico-Chat"><a href="#">Chat</a></li>
+		              <li class="ico-Telefone"><a href="#">Telefone</a></li>
+		            </ul>
+		            <a class="lnkSeta lnkSetaWhite fright" href="#">Ver todas as formas de atendimento</a>
+		          </nav>
+		        </div>
+		      </div>
+		      <div class="subfooter">
+		        <div class="limite">
+		          <span class="lastAccess"><strong>Último acesso:</strong> 7/8/2011 22:35:49   <strong>IP:</strong> 201.87.65.217 <a class="icoInterroga" href="#">?</a></span>
+		
+		          <p class="copyRight fright">Copyright &copy; 1997-2011 Locaweb Serviços de Internet S/A.</p>
+		        </div>
+		      </div>
+    	</footer>
+  	</div>
+  </body>
+</html>
+  

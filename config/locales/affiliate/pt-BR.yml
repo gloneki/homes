@@ -1,0 +1,13 @@
+pt-BR:
+  affiliate:
+    model: 'Parceiros'
+    actions:
+      index: 'Listagem'
+      show: 'Visualizar'
+      edit: 'Editar'
+      update: 'Editar'
+      new: 'Novo'
+      create: 'Novo'
+  activerecord:
+    attributtes:
+      

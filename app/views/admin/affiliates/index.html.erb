@@ -1,0 +1,39 @@
+<h3 style="padding:0px">Listagem Proprietários</h3><br />
+<%if @affiliates.empty?%>
+	<div class="alert alert-warning">Não existem parceiros cadastrados</div>
+<%else%>
+	<table class="tableList">
+	  <thead>
+		  <tr>
+		    <th>Name</th>
+		    <th>Data</th>
+		    <th>Status</th>
+		    <th>Ações</th>
+		    
+		  </tr>
+	  </thead>
+	  <tbody>
+	<% @affiliates.each do |affiliate| %>
+	  <tr>
+	    <td><%= affiliate.name %></td>
+	    <td><%= affiliate.date_affiliate %></td>
+	    <td><%= affiliate.status ? 'ATIVO' : 'INATIVO' %></td>
+	    <td>
+	    	<%= link_to '', {:controller =>'affiliates', :action => 'show', :id => affiliate.id}, :class => 'ico-info-circle' %>
+	    	<%= link_to '', edit_admin_affiliate_path(affiliate), :class => 'ico-edit' %>
+	    	<%if affiliate.status%>
+	    		<a href="#inactive_<%=affiliate.id%>" role="button" class="ico-blocked" data-toggle="modal"></a>
+	    		<%=render :partial => '/layouts/message_inactive', :locals =>{:controller => 'affiliates', :action_name => 'inactive', :id_value => affiliate.id}%>
+	    	<%else%>
+	    		<a href="#active_<%=affiliate.id%>" role="button" class="ico-check-1" data-toggle="modal"></a>
+	    		<%=render :partial => '/layouts/message_active', :locals =>{:controller => 'affiliates', :action_name => 'active', :id_value => affiliate.id}%>
+	    	<%end%>
+	    </td>
+	  </tr>
+	<% end %>
+	 </tbody>
+	</table>
+
+<%end%>
+<br />
+<%= link_to 'Novo Parceiro', new_admin_affiliate_path %>
