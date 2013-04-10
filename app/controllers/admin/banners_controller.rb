@@ -37,6 +37,11 @@ class Admin::BannersController < ApplicationController
       
     end
   end
+
+  def log
+    @logs = Log.where(:table => "banners", :rel => params[:id])
+    @banner = Banner.where(:id => params[:id]).first
+  end
   
 private
   def validate_module

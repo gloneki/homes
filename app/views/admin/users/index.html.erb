@@ -23,6 +23,7 @@
     		<a href="#active_<%=user.id%>" role="button" class="ico-check-1" data-toggle="modal"></a>
     		<%=render :partial => '/layouts/message_active', :locals =>{:controller => 'users', :action_name => 'active', :id_value => user.id}%>
     	<%end%>
+      <%= link_to '', {:controller => 'users', :action => 'log', :id => user.id}, :class => 'ico-tag' %>
     </td>
   </tr>
 <% end %>

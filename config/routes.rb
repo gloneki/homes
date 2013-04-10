@@ -33,7 +33,7 @@ Homes::Application.routes.draw do
     match 'module_extensions/log/:id', :controller=>"module_extensions", :action=>"log"
     resources :module_extensions
     
-    
+    match 'banners/log/:id', :controller=>"banners", :action=>"log"
     resources :banners
     
     resources :highlights

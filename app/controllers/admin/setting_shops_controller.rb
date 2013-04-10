@@ -47,6 +47,11 @@ class Admin::SettingShopsController < ApplicationController
       
     end
   end
+
+  def log
+    @logs = Log.where(:table => "setting_shop", :rel => params[:id])
+    @setting_shop = SettingShop.where(:id => params[:id]).first
+  end
   
   def load_type_contacts
     @type_contacts = [['Residencial', 'H'], ['Celular', 'M'], ['Comercial', 'W']]

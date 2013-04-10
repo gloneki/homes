@@ -23,5 +23,10 @@ class Admin::SettingsController < ApplicationController
     end
   end
 
+  def log
+    @logs = Log.where(:table => "setting", :rel => params[:id])
+    @setting = Setting.where(:id => params[:id]).first
+  end
+
   
 end

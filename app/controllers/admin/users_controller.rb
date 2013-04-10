@@ -71,5 +71,10 @@ class Admin::UsersController < ApplicationController
       format.html { redirect_to admin_users_url }
     end
   end
+
+  def log
+    @logs = Log.where(:table => "user", :rel => params[:id])
+     @user = User.where(:id => params[:id]).first
+  end
   
 end
