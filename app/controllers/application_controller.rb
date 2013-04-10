@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate_user!, :verify_account
+  before_filter :authenticate_user!, :verify_account, :set_current_user
   layout :layout_by_resource
   
   def verify_account
@@ -22,6 +22,15 @@ protected
       "login_layout"
     else
       "application"
+    end
+  end
+  
+ 
+
+private
+  def set_current_user
+    unless current_user.nil?
+      User.set_current_user = current_user.email
     end
   end
 

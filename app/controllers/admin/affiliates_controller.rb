@@ -90,6 +90,11 @@ class Admin::AffiliatesController < ApplicationController
     end
   end
   
+  def log
+    @logs = Log.where(:table => "affiliate", :rel => params[:id])
+    @affiliate = Affiliate.where(:id => params[:id]).first
+  end
+  
 private
   def validate_module
     module_ext = ModuleExtension.where(:tag_name => 'affiliates', :visible => 1).first

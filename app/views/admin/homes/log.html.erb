@@ -1,0 +1,35 @@
+<%if @logs.empty?%>
+	<div class="alert alert-warning">Não existem logs cadastrados para este registro</div>
+<%else%>
+	<table class="tableList">
+		<thead>
+			<tr>
+				<th class="txtLeft">Logs do Imóvel de código <%=@home.code%></th>
+			</tr>
+		</thead>
+			<tbody>
+				<%@logs.each do |log|%>
+				<tr>
+					<td class="txtLeft">
+						<% if log.action == 'create'%>
+							<strong>Mensagem :</strong><%=log.comments%><br />
+						<%elsif log.action == 'update'%>
+							<strong>Mensagem :</strong><%=log.comments%><br />
+							<strong>Campo alterado :</strong> <%=log.field%><br />
+							<strong>Valor Antigo :</strong><%=log.old_value%><br />
+							<strong>Valor Novo : </strong><%=log.new_value%><br />
+						<%end%>
+						<ul class="actionsTable">
+							<li><strong>Usuário :</strong><%=log.user%></li>
+							
+						</ul>
+					</td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	
+<%end%>
+<div class="form-actions">
+	<%= link_to 'Voltar', admin_homes_path, :class => 'btn' %>
+</div>

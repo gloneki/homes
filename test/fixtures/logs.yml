@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  table: MyString
+  action: MyString
+  field: MyString
+  old_value: MyString
+  new_value: MyString
+  comments: MyText
+  user: MyString
+
+two:
+  table: MyString
+  action: MyString
+  field: MyString
+  old_value: MyString
+  new_value: MyString
+  comments: MyText
+  user: MyString

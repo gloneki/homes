@@ -35,4 +35,10 @@ Homes::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  config.active_record.observers = :home_observer, :affiliate_observer, :banner_observer,
+                                   :highlight_observer, :module_extension_observer, 
+                                   :owner_observer, :setting_shop_observer, :user_observer, :address_observer,
+                                   :banner_file_observer, :highlight_file_observer, :owner_address_observer,
+                                   :owner_contact_observer, :setting_shop_contact_observer, :setting_observer
 end

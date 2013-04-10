@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130407180917) do
+ActiveRecord::Schema.define(:version => 20130409223243) do
 
   create_table "accounts", :force => true do |t|
     t.boolean  "status"
@@ -99,6 +99,19 @@ ActiveRecord::Schema.define(:version => 20130407180917) do
   add_index "homes", ["owner_id"], :name => "index_homes_on_owner_id"
   add_index "homes", ["type_home_id"], :name => "index_homes_on_type_home_id"
   add_index "homes", ["type_service_id"], :name => "index_homes_on_type_service_id"
+
+  create_table "logs", :force => true do |t|
+    t.string   "table"
+    t.string   "action"
+    t.string   "field"
+    t.string   "old_value"
+    t.string   "new_value"
+    t.text     "comments"
+    t.string   "user"
+    t.integer  "rel"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "module_extensions", :force => true do |t|
     t.string   "name"

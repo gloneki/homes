@@ -15,12 +15,14 @@ Homes::Application.routes.draw do
   
     match 'owners/active/:id', :controller=>"owners", :action=>"active"
     match 'owners/inactive/:id', :controller=>"owners", :action=>"inactive"
+    match 'owners/log/:id', :controller=>"owners", :action=>"log"
     match 'homes/get_owner' => 'homes#get_owner', :as => :homes_get_owner
     resources :owners
   
     
     match 'homes/active/:id', :controller=>"homes", :action=>"active"
     match 'homes/inactive/:id', :controller=>"homes", :action=>"inactive"
+    match 'homes/log/:id', :controller=>"homes", :action=>"log"
     resources :homes
   
     resources :settings
@@ -28,7 +30,9 @@ Homes::Application.routes.draw do
     match 'module_extensions/active/:id', :controller=>"module_extensions", :action=>"active"
     match 'module_extensions/inactive/:id', :controller=>"module_extensions", :action=>"inactive"
     match 'module_extensions/set_config/:id', :controller=>"module_extensions", :action=>"set_config"
+    match 'module_extensions/log/:id', :controller=>"module_extensions", :action=>"log"
     resources :module_extensions
+    
     
     resources :banners
     
@@ -36,6 +40,7 @@ Homes::Application.routes.draw do
     
     match 'affiliates/active/:id', :controller=>"affiliates", :action=>"active"
     match 'affiliates/inactive/:id', :controller=>"affiliates", :action=>"inactive"
+    match 'affiliates/log/:id', :controller=>"affiliates", :action=>"log"
     resources :affiliates
     
     
@@ -43,6 +48,7 @@ Homes::Application.routes.draw do
     
     match 'users/active/:id', :controller=>"users", :action=>"active"
     match 'users/inactive/:id', :controller=>"users", :action=>"inactive"
+    match 'users/log/:id', :controller=>"users", :action=>"log"
     resources :users
     
     

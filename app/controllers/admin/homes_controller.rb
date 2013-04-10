@@ -116,6 +116,15 @@ class Admin::HomesController < ApplicationController
       format.js 
     end
   end
+  
+  def log
+    logs = Log.all
+    logs = Log.arel_table
+    @logs = Log.where(logs[:table].eq("home").or(logs[:table].eq("address")).and(logs[:rel].eq(params[:id])))
+ 
+    @home = Home.where(:id => params[:id]).first
+  end
+  
 private
   def load_types
     @type_services = TypeService.all.collect{|t|[t.name, t.id]}
@@ -124,7 +133,7 @@ private
   end
   
   def load_owners
-    @owners = Owner.where(:account_id => session[:account_id])
+    @owners = Owner.all
   end
   
 
