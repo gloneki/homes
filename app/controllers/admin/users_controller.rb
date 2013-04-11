@@ -1,9 +1,9 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.paginate(:per_page => 1, :page => params[:page])
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users }
+      format.js
     end
   end
   

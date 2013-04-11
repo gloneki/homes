@@ -8,5 +8,6 @@ class Home < ActiveRecord::Base
   attr_accessible :code, :description, :price, :type_home_id, :type_service_id, :address_attributes, :owner_id, :account_id, :status
   validates_presence_of :code, :price, :type_home_id, :type_service_id, :owner_id
   validates_uniqueness_of :code
+  
 end
   

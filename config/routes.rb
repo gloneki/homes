@@ -10,6 +10,7 @@ Homes::Application.routes.draw do
     
     root :to => "admin/homes#index"
     
+    match 'setting_shops/log/:id', :controller=>"setting_shops", :action=>"log"
     resources :setting_shops
   
   
@@ -36,6 +37,7 @@ Homes::Application.routes.draw do
     match 'banners/log/:id', :controller=>"banners", :action=>"log"
     resources :banners
     
+    match 'highlights/log/:id', :controller=>"highlights", :action=>"log"
     resources :highlights
     
     match 'affiliates/active/:id', :controller=>"affiliates", :action=>"active"

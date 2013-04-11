@@ -38,6 +38,15 @@ class Admin::HighlightsController < ApplicationController
     end
   end
   
+  def log
+    logs = Log.all
+    logs = Log.arel_table
+    @logs = Log.where(logs[:table].eq("highlight").
+                      or(logs[:table].eq("highlight_file")))
+ 
+    @highlight = Highlight.where(:id => params[:id]).first
+  end
+  
 private
   def validate_module
     module_ext = ModuleExtension.where(:tag_name => 'highlights', :visible => 1).first

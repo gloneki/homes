@@ -39,7 +39,10 @@ class Admin::BannersController < ApplicationController
   end
 
   def log
-    @logs = Log.where(:table => "banners", :rel => params[:id])
+    logs = Log.all
+    logs = Log.arel_table
+    @logs = Log.where(logs[:table].eq("banners").
+                      or(logs[:table].eq("banner_file")))
     @banner = Banner.where(:id => params[:id]).first
   end
   

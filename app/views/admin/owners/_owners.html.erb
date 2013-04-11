@@ -1,0 +1,43 @@
+<table class="tableList">
+  <thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Document</th>
+	    <th>Email</th>
+	    <th>Status</th>
+	    <th>Estado</th>
+	    <th>Cidade</th>
+	    <th>Ações</th>
+	    
+	  </tr>
+  </thead>
+  <tbody>
+<% @owners.each do |owner| %>
+  <tr>
+    <td><%= owner.name %></td>
+    <td><%= owner.document %></td>
+    <td><%= owner.email %></td>
+    <td><%= owner.status %></td>
+    <td><%= owner.owner_address.state %></td>
+    <td><%= owner.owner_address.city %></td>
+    <td>
+    	<%= link_to '', {:controller => 'owners', :action => 'show', :id => owner.id}, :class => 'ico-info-circle' %>
+    	<%= link_to '', edit_admin_owner_path(owner), :class => 'ico-edit' %>
+    	<%= link_to '', {:controller => 'owners', :action => 'log', :id => owner.id}, :class => 'ico-tag' %>
+    </td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+	
+<div class="navView">
+	<%= hidden_field_tag :direction, params[:direction] %>
+	<%= hidden_field_tag :sort, params[:sort] %>
+	<%= will_paginate @owners %>
+	<div class="filtroExibe"></div>
+</div>
+<style>
+.pagination{
+	margin-top:25px;	
+}
+</style>

@@ -1,0 +1,40 @@
+<table class="tableList">
+  <thead>
+	  <tr>
+	    <th>Email</th>
+	    <th>Status</th>
+	    <th>Ações</th>
+	    
+	  </tr>
+  </thead>
+  <tbody>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= user.is_active ? 'ATIVO' : 'INATIVO' %></td>
+    <td>
+    	<%= link_to '', edit_admin_user_path(user), :class => 'ico-edit' %>
+    	<%if user.is_active%>
+    		<a href="#inactive_<%=user.id%>" role="button" class="ico-blocked" data-toggle="modal"></a>
+    		<%=render :partial => '/layouts/message_inactive', :locals =>{:controller => 'users', :action_name => 'inactive', :id_value => user.id}%>
+    	<%else%>
+    		<a href="#active_<%=user.id%>" role="button" class="ico-check-1" data-toggle="modal"></a>
+    		<%=render :partial => '/layouts/message_active', :locals =>{:controller => 'users', :action_name => 'active', :id_value => user.id}%>
+    	<%end%>
+      <%= link_to '', {:controller => 'users', :action => 'log', :id => user.id}, :class => 'ico-tag' %>
+    </td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+<div class="navView">
+	<%= hidden_field_tag :direction, params[:direction] %>
+	<%= hidden_field_tag :sort, params[:sort] %>
+	<%= will_paginate @users %>
+	<div class="filtroExibe"></div>
+</div>
+<style>
+.pagination{
+	margin-top:25px;	
+}
+</style>

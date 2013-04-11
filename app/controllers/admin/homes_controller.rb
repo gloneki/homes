@@ -4,12 +4,11 @@ class Admin::HomesController < ApplicationController
   before_filter :load_types, :load_owners
   
   def index
+    @homes = Home.paginate(:per_page => 2, :page => params[:page])
     
-    @homes = Home.all
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @homes }
+      format.js
     end
   end
 

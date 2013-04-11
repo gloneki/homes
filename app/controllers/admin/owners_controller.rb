@@ -4,11 +4,11 @@ class Admin::OwnersController < ApplicationController
   before_filter :load_type_contacts
   
   def index
-    @owners = Owner.all
-
+    @owners = Owner.paginate(:per_page => 2, :page => params[:page])
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @owners }
+      format.js
     end
   end
 
@@ -90,7 +90,9 @@ class Admin::OwnersController < ApplicationController
   def log
     logs = Log.all
     logs = Log.arel_table
-    @logs = Log.where(logs[:table].eq("owner").or(logs[:table].eq("owner_address").or(logs[:table].eq("owner_contacts")).and(logs[:rel].eq(params[:id])))
+    @logs = Log.where(logs[:table].eq("owner").
+                      or(logs[:table].eq("owner_address").or(logs[:table].eq("owner_contacts"))).
+                      and(logs[:rel].eq(params[:id])))
  
     @owner = Owner.where(:id => params[:id]).first
   end

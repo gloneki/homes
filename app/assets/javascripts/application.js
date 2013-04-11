@@ -29,3 +29,10 @@ function add_fields(link, association, content) {
     $(".sideBySide:last").after(content.replace(regexp, new_id));
     
 }
+jQuery(function() {
+  jQuery(".pagination a").live("click", function() {
+    jQuery.getScript(this.href);
+    return false;
+  });
+  
+});

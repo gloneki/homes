@@ -1,0 +1,55 @@
+<table class="tableList">
+	  <thead>
+		  <tr>
+		    <th>Code</th>
+		    <th>Tipo de Imóvel</th>
+		    <th>Tipo de Serviço</th>
+		    <th>Proprietário</th>
+		    <th>Cidade</th>
+		    <th>Bairro</th>
+		    <th>Preço</th>
+		    <th>Status</th>
+		    <th>Ações</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+	<% @homes.each do |home| %>
+	  
+	  <tr>
+	    <td><%= home.code %></td>
+	    <td><%= home.type_home.name%></td>
+	    <td><%= home.type_service.name%></td>
+	    <td><%= home.owner.name %></td>
+	    <td><%= home.address.city %></td>
+	    <td><%= home.address.neighborhood %></td>
+	    <td><%= home.price %></td>
+	    <td><%= home.status ? 'ATIVO' : 'INATIVO' %></td>
+	    <td>
+	    	<%= link_to '', {:controller => 'homes', :action => 'show', :id => home.id}, :class => 'ico-info-circle'%>
+	    	<%= link_to '', edit_admin_home_path(home), :class => 'ico-edit'%>
+	    	<%if home.status%>
+	    		<a href="#inactive_<%=home.id%>" role="button" class="ico-blocked" data-toggle="modal"></a>
+	    		<%=render :partial => '/layouts/message_inactive', :locals =>{:controller => 'homes', :action_name => 'inactive', :id_value => home.id}%>
+	    	<%else%>
+	    		<a href="#active_<%=home.id%>" role="button" class="ico-check-1" data-toggle="modal"></a>
+	    		<%=render :partial => '/layouts/message_active', :locals =>{:controller => 'homes', :action_name => 'active', :id_value => home.id}%>
+	    	<%end%>
+	    	<%= link_to '', {:controller => 'homes', :action => 'log', :id => home.id}, :class => 'ico-tag' %>
+	    </td>
+	  </tr>
+	  
+	<% end %>
+	  </tbody>
+	</table>
+	
+<div class="navView">
+	<%= hidden_field_tag :direction, params[:direction] %>
+	<%= hidden_field_tag :sort, params[:sort] %>
+	<%= will_paginate @homes %>
+	<div class="filtroExibe"></div>
+</div>
+<style>
+.pagination{
+	margin-top:25px;	
+}
+</style>

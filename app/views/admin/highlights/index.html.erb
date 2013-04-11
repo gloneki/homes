@@ -1,5 +1,11 @@
 <%= simple_form_for ([:admin, @highlight]) do |f| %>
-	<h5>Configurações Destaques</h5><br/>
+	
+	<div class="sideBySide">
+		<h3 style="padding:0px">Configurações Destaques
+		<%= link_to '', {:controller => 'highlights', :action => 'log', :id => @highlight.id}, :class => 'ico-tag', :style => "float:right" %>
+		</h3>
+	</div>
+	<br/>
 	<%=f.input :name, :input_html =>{:required => true, :class => 'span6'}%>
 	<%=f.fields_for :highlight_files do |builder|%>
   		<%=render :partial => 'highlight_file_fields', :locals => {:f => builder}%>

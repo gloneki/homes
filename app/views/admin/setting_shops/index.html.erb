@@ -1,3 +1,8 @@
-<h3 style="padding:0px">Configurações Loja</h3><br />
+<div class="sideBySide">
+	<h3 style="padding:0px">Configurações Loja
+	<%= link_to '', {:controller => 'setting_shops', :action => 'log', :id => @setting_shop.id}, :class => 'ico-tag', :style => "float:right" %>
+	</h3>
+</div>
+<br />
 
 <%= render 'form' %>
